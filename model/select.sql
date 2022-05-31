@@ -3,7 +3,9 @@ SELECT * FROM roles;
 SELECT * FROM routes;
 SELECT * FROM user_roles;
 SELECT * FROM role_routes;
+SELECT count(*) FROM role_routes;
 SELECT * FROM role_routes WHERE role_id = '0a3a5a56-4eaf-48f5-a0fa-9f4d4953e303';
+SELECT insert_role_routes('a19d666d-6a2d-4c4d-89ff-1ce0f06f7a2f');
 
 -- USER ROLES
 SELECT
