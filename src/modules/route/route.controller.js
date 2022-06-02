@@ -27,7 +27,6 @@ module.exports = {
 
       res.status(201).json({ message: "CREATED", data: createRoute });
     } catch (error) {
-      console.log(error);
       res.status(500).end();
     }
   },
@@ -58,7 +57,6 @@ module.exports = {
       } = req;
 
       const deletedRoute = await model.deletedRoute(id);
-      console.log(deletedRoute);
       if (!deletedRoute)
         return res.status(500).json({ message: "NOT_DELETED" });
 
