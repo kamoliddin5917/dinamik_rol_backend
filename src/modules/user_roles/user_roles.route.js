@@ -2,14 +2,12 @@ const { Router } = require("express");
 
 const router = Router();
 
-const controller = require("./route.controller");
+const controller = require("./user_roles.controller");
 
 router
   .get("/", controller.GET)
 
   .post("/", controller.POST)
-
-  .put("/", controller.PUT)
 
   .delete("/:id", controller.DELETE);
 

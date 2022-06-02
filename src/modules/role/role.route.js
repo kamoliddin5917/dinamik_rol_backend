@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 
-const controller = require("./route.controller");
+const controller = require("./role.controller");
 
 router
   .get("/", controller.GET)

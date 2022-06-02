@@ -25,7 +25,9 @@ FOR EACH ROW
 EXECUTE PROCEDURE t_insert_role_routes();
 
 -- UUID
-CREATE OR REPLACE FUNCTION u_insert_role_routes()
+
+-- insert role 
+CREATE OR REPLACE FUNCTION role_insert_role_routes()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 AS
@@ -44,8 +46,34 @@ BEGIN
 END
 $$;
 
-CREATE TRIGGER u_insert_trg
+CREATE TRIGGER role_insert_trg
 AFTER INSERT
 ON roles
 FOR EACH ROW
-EXECUTE PROCEDURE u_insert_role_routes();
+EXECUTE PROCEDURE role_insert_role_routes();
+
+-- insert route
+CREATE OR REPLACE FUNCTION route_insert_role_routes()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+roles_id record;
+BEGIN
+
+    FOR roles_id IN SELECT id  FROM roles
+    LOOP
+    INSERT INTO role_routes(role_id, route_id) VALUES (roles_id.id, NEW.id);
+    END LOOP;
+
+    RETURN NEW;
+
+END
+$$;
+
+CREATE TRIGGER route_insert_trg
+AFTER INSERT
+ON routes
+FOR EACH ROW
+EXECUTE PROCEDURE route_insert_role_routes();
